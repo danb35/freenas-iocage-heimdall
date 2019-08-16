@@ -15,6 +15,7 @@ FILE="2.2.2.tar.gz"
 
 # Don't change anything below here
 RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g")
+mountpoint=$(zfs get -H -o value mountpoint $(iocage get -p)/iocage)
 
 # Create the jail, pre-installing needed packages
 cat <<__EOF__ >/tmp/pkg.json
@@ -49,7 +50,7 @@ iocage exec "${JAIL_NAME}" sysrc caddy_enable=YES
 iocage exec "${JAIL_NAME}" sysrc caddy_cert_email="${CERT_EMAIL}"
 
 # Create Caddyfile
-cat <<__EOF__ >/mnt/iocage/jails/"${JAIL_NAME}"/root/usr/local/www/Caddyfile
+cat <<__EOF__ >"${mountpoint}"/jails/"${JAIL_NAME}"/root/usr/local/www/Caddyfile
 *:80 {
 gzip
 root /usr/local/www/html/public
