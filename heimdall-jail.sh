@@ -58,9 +58,9 @@ root /usr/local/www/html/public
                 env PATH /bin
         }
 rewrite {
-    r .*
-    ext /
-    to {path} {path}/ /index.php?/{path}&{query}
+  r .*
+  ext / .config
+  to /index.php/{query}
 }
 }
 __EOF__
