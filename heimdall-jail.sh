@@ -14,7 +14,7 @@ CERT_EMAIL="nobody@example.com"
 FILE="2.2.2.tar.gz"
 
 # Don't change anything below here
-RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g")
+RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g" | sed "s/-p[0-9]*//")
 mountpoint=$(zfs get -H -o value mountpoint $(iocage get -p)/iocage)
 
 # Create the jail, pre-installing needed packages
