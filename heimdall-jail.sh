@@ -9,6 +9,7 @@
 # FILE should be set to the version number of the latest release, with .tar.gz added
 JAIL_NAME="heimdall"
 JAIL_IP=192.168.1.204
+JAIL_NETMASK=24
 DEFAULT_GW_IP=192.168.1.1
 CERT_EMAIL="nobody@example.com"
 FILE="2.2.2.tar.gz"
@@ -29,7 +30,7 @@ cat <<__EOF__ >/tmp/pkg.json
 __EOF__
 
 if ! iocage create --name "${JAIL_NAME}" -p /tmp/pkg.json -r "${RELEASE}" \
-  ip4_addr="vnet0|${JAIL_IP}/24" defaultrouter="${DEFAULT_GW_IP}" boot="on" \
+  ip4_addr="vnet0|${JAIL_IP}/${JAIL_NETMASK}" defaultrouter="${DEFAULT_GW_IP}" boot="on" \
   host_hostname="${JAIL_NAME}" vnet="on"
 then
 	echo "Failed to create jail"
