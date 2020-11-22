@@ -61,7 +61,7 @@ then
   NETMASK="24"
 fi
 
-RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g" | sed "s/-p[0-9]*//")
+RELEASE=$(freebsd-version | cut -d - -f -1)"-RELEASE"
 mountpoint=$(zfs get -H -o value mountpoint $(iocage get -p)/iocage)
 
 # Create the jail, pre-installing needed packages
@@ -118,10 +118,10 @@ iocage exec "${JAIL_NAME}" mkdir -p /usr/local/www/html
 iocage exec "${JAIL_NAME}" fetch -o /tmp https://github.com/linuxserver/Heimdall/archive/"${FILE}"
 iocage exec "${JAIL_NAME}" tar zxf /tmp/"${FILE}" --strip 1 -C /usr/local/www/html/
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/www/html/storage/app/public/icons
-iocage exec "${JAIL_NAME}" chown -R www:www /usr/local/www/html/
 iocage exec "${JAIL_NAME}" sh -c 'find /usr/local/www/ -type d -print0 | xargs -0 chmod 2775'
 iocage exec "${JAIL_NAME}" touch /usr/local/www/html/database/app.sqlite
 iocage exec "${JAIL_NAME}" chmod 664 /usr/local/www/html/database/app.sqlite
+iocage exec "${JAIL_NAME}" chown -R www:www /usr/local/www/html/
 iocage exec "${JAIL_NAME}" sysrc php_fpm_enable=YES
 iocage exec "${JAIL_NAME}" sysrc caddy_enable=YES
 
