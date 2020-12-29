@@ -68,10 +68,9 @@ mountpoint=$(zfs get -H -o value mountpoint $(iocage get -p)/iocage)
 cat <<__EOF__ >/tmp/pkg.json
 {
   "pkgs":[
-  "nano", "caddy", "php74", "php74-mbstring", "php74-zip", "php74-tokenizer", 
-  "php74-openssl", "php74-pdo", "php74-pdo_sqlite", "php74-filter", "php74-xml", 
-  "php74-ctype", "php74-json", "sqlite3", "php74-session", "php74-hash",
-  "go", "git"
+  "nano", "caddy", "php73", "php73-mbstring", "php73-zip", "php73-tokenizer", 
+  "php73-openssl", "php73-pdo", "php73-pdo_sqlite", "php73-filter", "php73-xml", 
+  "php73-ctype", "php73-json", "sqlite3", "php73-session", "php73-hash", "go", "git"
   ]
 }
 __EOF__
@@ -87,11 +86,12 @@ rm /tmp/pkg.json
 
 # Store Caddyfile and data outside the jail
 mkdir -p "${POOL_PATH}"/apps/heimdall
+iocage exec "${JAIL_NAME}" mkdir -p /usr/local/www/
 iocage fstab -a "${JAIL_NAME}" "${POOL_PATH}"/apps/heimdall /usr/local/www nullfs rw 0 0
 
 # Create Caddyfile
 cat <<__EOF__ >"${mountpoint}"/jails/"${JAIL_NAME}"/root/usr/local/www/Caddyfile
-*:80 {
+:80 {
 	encode gzip
 
 	log {

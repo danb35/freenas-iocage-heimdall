@@ -16,7 +16,6 @@ POOL_PATH="/mnt/tank"
 * DEFAULT_GW_IP:  The IP address of your default gateway.
 * POOL_PATH:  The path to your main data pool (e.g., `/mnt/tank`).  The Caddyfile and Heimdall installation files (i.e., the web pages themselves) will be stored there, in $POOL_PATH/apps/heimdall.  If you have more than one pool, choose the one you want to use for this purpose.
 * FILE:  Optional.  The filename to download, which identifies the version of Heimdall to download.  Default is 2.2.2.  To check for a more recent release, see the [Heimdall release page](https://github.com/linuxserver/Heimdall/releases).
-* DNS_PLUGIN:  Optional.  If you want to compile Caddy using a DNS validation plugin, specify it here.  To see the available plugins, go to the [Caddy download page](https://caddyserver.com/download).  Only enter the actual name of the plugin--e.g., if the plugin is listed with a package name of `github.com/caddy-dns/cloudflare`, enter only `cloudflare`.  **Note:** This will not configure the installation to use this plugin--you'll still need to handle that in your Caddyfile.  It will, however, make the plugin available.
 * JAIL_NAME:  Optional.  The name of the jail.  If not given, will default to "heimdall".
 
 ## Post-install configuration
