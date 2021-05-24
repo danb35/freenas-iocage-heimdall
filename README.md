@@ -23,8 +23,7 @@ This script uses the [Caddy](https://caddyserver.com/) web server, which support
 
 This script installs Caddy from the FreeBSD binary package, which does not include any [DNS validation plugins](https://caddyserver.com/download).  If you need to use these, you'll need to build Caddy from source.  The tools to do this are installed in the jail.  To build Caddy, run these commands:
 ```
-go get -u github.com/caddyserver/xcaddy/cmd/xcaddy
-go build -o /usr/local/bin/xcaddy github.com/caddyserver/xcaddy/cmd/xcaddy
+go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 xcaddy build --output /usr/local/bin/caddy --with github.com/caddy-dns/${DNS_PLUGIN}
 ```
 ...with `${DNS_PLUGIN}` representing the name of the plugin, listed on the page linked above.  You'll then need to modify your configuration as described in the Caddy docs.
