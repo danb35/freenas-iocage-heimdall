@@ -22,7 +22,7 @@ JAIL_NAME="heimdall"
 JAIL_IP=""
 DEFAULT_GW_IP=""
 POOL_PATH=""
-FILE="2.2.2.tar.gz"
+FILE="V2.4.5.tar.gz"
 DNS_PLUGIN=""
 CONFIG_NAME="heimdall-config"
 
@@ -68,9 +68,9 @@ mountpoint=$(zfs get -H -o value mountpoint $(iocage get -p)/iocage)
 cat <<__EOF__ >/tmp/pkg.json
 {
   "pkgs":[
-  "nano", "caddy", "php73", "php73-mbstring", "php73-zip", "php73-tokenizer", 
-  "php73-openssl", "php73-pdo", "php73-pdo_sqlite", "php73-filter", "php73-xml", 
-  "php73-ctype", "php73-json", "sqlite3", "php73-session", "php73-hash", "go", "git"
+  "nano", "caddy", "php80", "php80-mbstring", "php80-zip", "php80-tokenizer", 
+  "php80-openssl", "php80-pdo", "php80-pdo_sqlite", "php80-filter", "php80-xml", 
+  "php80-ctype", "sqlite3", "php80-session", "go", "git"
   ]
 }
 __EOF__

@@ -15,7 +15,7 @@ POOL_PATH="/mnt/tank"
 * JAIL_IP:  The IP address to assign the jail.  You may optionally specify a netmask in CIDR notion.  If none is specified, the default is /24.  Values of less than 8 bits or more than 30 bits will also result in a 24-bit netmask.
 * DEFAULT_GW_IP:  The IP address of your default gateway.
 * POOL_PATH:  The path to your main data pool (e.g., `/mnt/tank`).  The Caddyfile and Heimdall installation files (i.e., the web pages themselves) will be stored there, in $POOL_PATH/apps/heimdall.  If you have more than one pool, choose the one you want to use for this purpose.
-* FILE:  Optional.  The filename to download, which identifies the version of Heimdall to download.  Default is 2.2.2.  To check for a more recent release, see the [Heimdall release page](https://github.com/linuxserver/Heimdall/releases).
+* FILE:  Optional.  The filename to download, which identifies the version of Heimdall to download.  Default is 2.4.5.  To check for a more recent release, see the [Heimdall release page](https://github.com/linuxserver/Heimdall/releases).
 * JAIL_NAME:  Optional.  The name of the jail.  If not given, will default to "heimdall".
 
 ## Post-install configuration
