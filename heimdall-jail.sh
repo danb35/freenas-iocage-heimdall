@@ -22,7 +22,7 @@ JAIL_NAME="heimdall"
 JAIL_IP=""
 DEFAULT_GW_IP=""
 POOL_PATH=""
-FILE="V2.4.5.tar.gz"
+FILE="v2.4.9.tar.gz"
 DNS_PLUGIN=""
 CONFIG_NAME="heimdall-config"
 

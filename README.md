@@ -15,7 +15,7 @@ POOL_PATH="/mnt/tank"
 * JAIL_IP:  The IP address to assign the jail.  You may optionally specify a netmask in CIDR notion.  If none is specified, the default is /24.  Values of less than 8 bits or more than 30 bits will also result in a 24-bit netmask.
 * DEFAULT_GW_IP:  The IP address of your default gateway.
 * POOL_PATH:  The path to your main data pool (e.g., `/mnt/tank`).  The Caddyfile and Heimdall installation files (i.e., the web pages themselves) will be stored there, in $POOL_PATH/apps/heimdall.  If you have more than one pool, choose the one you want to use for this purpose.
-* FILE:  Optional.  The filename to download, which identifies the version of Heimdall to download.  Default is 2.4.5.  To check for a more recent release, see the [Heimdall release page](https://github.com/linuxserver/Heimdall/releases).
+* FILE:  Optional.  The filename to download, which identifies the version of Heimdall to download.  Default is 2.4.9.  To check for a more recent release, see the [Heimdall release page](https://github.com/linuxserver/Heimdall/releases).  As of this writing (2 April 2022), updates are very frequent; if a more recent version has been released, set this variable to the full file name of the download, e.g., `FILE="v2.5.1.tar.gz"`.
 * JAIL_NAME:  Optional.  The name of the jail.  If not given, will default to "heimdall".
 
 ## Post-install configuration
@@ -27,6 +27,17 @@ go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 xcaddy build --output /usr/local/bin/caddy --with github.com/caddy-dns/${DNS_PLUGIN}
 ```
 ...with `${DNS_PLUGIN}` representing the name of the plugin, listed on the page linked above.  You'll then need to modify your configuration as described in the Caddy docs.
+
+## Self-signed or local CA
+If you're using self-signed certs, or a local certificate authority, for any of your local resources, you'll need to add the relevant root certificate to the trust store for your jail, or Heimdall won't be able to communicate securely with those resources.  To do this,
+
+* Enter the jail with `iocage console heimdall`
+* Place a copy of the cert in `/usr/share/certs/trusted/(descriptive cert name).pem`.
+* `cd /etc/ssl/certs`
+* `openssl x509 -noout -hash -in /usr/share/certs/trusted/(descriptive cert name).pem`
+* This will return a hash value like `e94f1467`
+* `ln -s /usr/share/certs/trusted/(descriptive cert name).pem (hash value).0`
+* Exit and restart the jail
 
 # Support
 Questions and discussion should be directed to https://forum.freenas-community.org/t/install-heimdall-dashboard-in-a-jail-script-freenas-11-2/35
