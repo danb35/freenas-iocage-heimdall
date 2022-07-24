@@ -68,9 +68,22 @@ mountpoint=$(zfs get -H -o value mountpoint $(iocage get -p)/iocage)
 cat <<__EOF__ >/tmp/pkg.json
 {
   "pkgs":[
-  "nano", "caddy", "php80", "php80-mbstring", "php80-zip", "php80-tokenizer", 
-  "php80-openssl", "php80-pdo", "php80-pdo_sqlite", "php80-filter", "php80-xml", 
-  "php80-ctype", "sqlite3", "php80-session", "go", "git"
+  "nano", 
+  "caddy", 
+  "php80", 
+  "php80-mbstring", 
+  "php80-zip", 
+  "php80-tokenizer", 
+  "php80-openssl", 
+  "php80-pdo", 
+  "php80-pdo_sqlite", 
+  "php80-filter", 
+  "php80-xml", 
+  "php80-ctype", 
+  "sqlite3", 
+  "php80-session", 
+  "go", 
+  "git"
   ]
 }
 __EOF__
@@ -96,7 +109,6 @@ cat <<__EOF__ >"${mountpoint}"/jails/"${JAIL_NAME}"/root/usr/local/www/Caddyfile
 
 	log {
 		output file /var/log/heimdall_access.log
-		format single_field common_log
 	}
 
 	root * /usr/local/www/html/public
