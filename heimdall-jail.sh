@@ -79,7 +79,6 @@ cat <<__EOF__ >/tmp/pkg.json
   "php82-mbstring", 
   "php82-zip", 
   "php82-tokenizer", 
-  "php82-openssl", 
   "php82-pdo", 
   "php82-pdo_sqlite", 
   "php82-filter", 
