@@ -22,7 +22,7 @@ JAIL_NAME="heimdall"
 JAIL_IP=""
 DEFAULT_GW_IP=""
 POOL_PATH=""
-FILE="v2.4.9.tar.gz"
+FILE="v2.6.1.tar.gz"
 DNS_PLUGIN=""
 CONFIG_NAME="heimdall-config"
 
@@ -62,6 +62,11 @@ then
 fi
 
 RELEASE=$(freebsd-version | cut -d - -f -1)"-RELEASE"
+# If release is 13.1-RELEASE, change to 13.2-RELEASE
+if [ "${RELEASE}" = "13.1-RELEASE" ]; then
+  RELEASE="13.2-RELEASE"
+fi
+
 mountpoint=$(zfs get -H -o value mountpoint $(iocage get -p)/iocage)
 
 # Create the jail, pre-installing needed packages
@@ -70,18 +75,20 @@ cat <<__EOF__ >/tmp/pkg.json
   "pkgs":[
   "nano", 
   "caddy", 
-  "php80", 
-  "php80-mbstring", 
-  "php80-zip", 
-  "php80-tokenizer", 
-  "php80-openssl", 
-  "php80-pdo", 
-  "php80-pdo_sqlite", 
-  "php80-filter", 
-  "php80-xml", 
-  "php80-ctype", 
+  "php82", 
+  "php82-mbstring", 
+  "php82-zip", 
+  "php82-tokenizer", 
+  "php82-openssl", 
+  "php82-pdo", 
+  "php82-pdo_sqlite", 
+  "php82-filter", 
+  "php82-xml", 
+  "php82-ctype", 
+  "php82-dom",
+  "php82-fileinfo",
   "sqlite3", 
-  "php80-session", 
+  "php82-session", 
   "go", 
   "git"
   ]
